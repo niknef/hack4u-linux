@@ -1,0 +1,3 @@
+Introducion a linux:
+    -Instalamos Parrot desde ISO en VMware
+    
