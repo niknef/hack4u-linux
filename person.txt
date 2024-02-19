@@ -1,1 +1,219 @@
 VAMOS A PERSONALIZAR NUESTRO LINUX!
+    -bspwm : nuevo entorno
+    -sxhkd : atajos
+
+        En resumen, primeramente ejecutaremos el siguiente comando:
+
+            apt install build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
+
+        Posteriormente, aplicaremos una actualización del sistema con el comando ‘apt update‘. Acto seguido, tenéis que dirigiros a la carpeta de descargas de vuestro equipo y descargar los proyectos ‘bswpm‘ y ‘sxhkd‘ con los siguientes comandos:
+
+            git clone https://github.com/baskerville/bspwm.git
+            git clone https://github.com/baskerville/sxhkd.git
+
+        Para instalar cada uno de estos, lo que debéis hacer es meteros en ambos directorios por separado y ejecutar los comandos ‘make‘ y ‘sudo make install‘.
+
+        En caso de que os salga algún error relacionado con ‘xinerama‘, podéis ejecutar este comando:
+
+            sudo apt install libxinerama1 libxinerama-dev
+
+        Finalmente, instalaremos ‘bspwm‘ con el comando ‘sudo apt install bspwm‘. Este es un paso que se me olvida aplicar en esta clase, pero aún así lo hacemos más adelante. Mi recomendación es que lo hagáis ya para evitar problemas futuros.
+
+        ¡Recordad que está prohibido hacer un ‘apt upgrade‘!
+
+
+//Para actualizar parrot hacmemos 
+    which parrot-upgrade
+    esto nos muestra un archivo y si le hacemos un cat nos muestra que tiene lo siguiente: 
+
+        #!/bin/bash
+            set -e
+            DEBIAN_FRONTEND="noninteractive"
+            DEBIAN_PRIORITY="critical"
+            DEBCONF_NOWARNINGS="yes"
+            export DEBIAN_FRONTEND DEBIAN_PRIORITY DEBCONF_NOWARNINGS
+            apt update || echo failed to update index lists
+            dpkg --configure -a || echo failed to fix interrupted upgrades
+            apt --fix-broken --fix-missing install || echo failed to fix conflicts
+            apt -y --fix-broken --fix-missing full-upgrade
+            apt -y full-upgrade
+
+y para actualizar hacemos : 
+
+    parrot-upgrade
+--------------------------------------
+en la carpeta de descargas entramos a cada carpeta creada luego de hacer los git clones 
+y hacemos un 
+-make
+-sudo make install
+--------------------------------------
+Una vez instalados vamos a ir ejecutando los siguientes lineas
+mkdir ~/.config/{bspwm,sxhkd}  (esto dentro de descargas)
+cd bspwm/
+cd examples/
+cp bspwmrc ~/.config/bspwm/
+cp sxhkdrc ~/.config/sxhkd/
+
+cd ~/.config/sxhkd/
+apt install kitty /y
+
+nano sxhkd (para poder cambiar las configuraciones)
+
+
+
+--------------------------------------
+SCRIPT PARA CONFIGURAR EL AJUSTE DE VENTANAS
+
+#!/usr/bin/env dash
+
+if bspc query -N -n focused.floating > /dev/null; then
+	step=20
+else
+	step=100
+fi
+
+case "$1" in
+	west) dir=right; falldir=left; x="-$step"; y=0;;
+	east) dir=right; falldir=left; x="$step"; y=0;;
+	north) dir=top; falldir=bottom; x=0; y="-$step";;
+	south) dir=top; falldir=bottom; x=0; y="$step";;
+esac
+
+bspc node -z "$dir" "$x" "$y" || bspc node -z "$falldir" "$x" "$y"
+
+//POLYBAR
+
+
+
+Por aquí os comparto el primer comando que introducimos al empezar la clase, necesario para instalar una serie de dependencias previas a la instalación de la Polybar:
+
+    apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libuv1-dev libnl-genl-3-dev
+
+IMPORTANTE: En caso de que os de problemas el paquete ‘python3-sphinx‘, simplemente quitadlo del comando anterior. Primero probadlo con el paquete ‘python3-sphinx‘ incluido, quitadlo sólo si os da problemas.
+
+Posteriormente, debéis clonar en vuestra carpeta de descargas el repositorio de la polybar:
+
+    git clone –recursive https://github.com/polybar/polybar [Son 2 guiones donde pone ‘recursive‘]
+
+Una vez hecho, os tenéis que meter en la carpeta creada resultante de haber clonado previamente el repositorio y ejecutar los siguientes comandos:
+
+    mkdir build
+    cd build
+    cmake ..
+    make -j$(nproc)
+    sudo make install
+
+Recordad que otra forma de instalar la polybar de manera más sencilla, es haciendo un ‘apt install polybar‘, pero recomendamos esta forma que mostramos con el objetivo de asegurar que la Polybar esté en su última versión.
+
+Con esto, ¡ya deberíais tener la polybar instalada!
+
+-----------------------------------
+Instalación de Picom y retocando el sxhkdrc
+para configurar transparecias, blurs etc
+
+
+Por aquí tenéis todo el comando necesario a ejecutar para instalar ciertas dependencias previas:
+
+    apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
+
+Posteriormente, os descargáis el picom a través del siguiente comando ejecutado en la carpeta de descargas:
+
+    git clone https://github.com/ibhagwan/picom.git
+
+Una vez hecho, nos metemos en el directorio creado y ejecutamos los siguientes comandos:
+
+    git submodule update –init –recursive [Son 2 guiones donde pone ‘init‘ y ‘recursive‘]
+    meson –buildtype=release . build [Son 2 guiones donde pone ‘buildtype‘] 
+    ninja -C build
+    sudo ninja -C build install
+
+En esta clase también hemos instalado ‘rofi‘, lo hemos hecho mediante la ejecución del siguiente comando:
+
+    apt install rofi
+
+Con esto hecho, ya migramos a nuestro entorno ‘bspwm‘ y verificamos que todos los atajos estén funcionando correctamente.
+
+
+
+
+
+Por aquí tienes el archivo ‘color.ini‘ para la Kitty:
+
+    https://hack4u.io/wp-content/uploads/2022/09/color.ini_.txt
+
+Por aquí tienes el archivo de configuración ‘kitty.conf‘ para la Kitty:
+
+    https://hack4u.io/wp-content/uploads/2022/09/kitty.conf_.txt
+
+Os compartimos a continuación el fondo de pantalla que utilizamos en esta clase:
+
+    https://hack4u.io/wp-content/uploads/2022/09/fondo.png
+
+
+
+luego descargamos la hack nerd fonts
+
+mv Hack.zip /usr/local/share/fonts/
+
+cd /usr/local/share/fonts/
+
+unzip hack.zip
+
+rm Hack.zip
+
+
+nano /.config/bswpm/bspwmrc 
+	
+	vmware-user-suid-wrapper &
+
+creamos color.ini y kitty.conf en config/kitty
+
+apt install zsh
+
+actualizamos kitty
+vamos a la version que queremos y descargamos linuz amd64 binary bundle
+
+
+cd /opt/
+
+mkdir kitty
+
+cd kitty
+
+mv /home/nicofirpo/Descargas/
+
+mv /home/nicofirpo/Descargas/kitty-0.32.2-x86_64.txz /opt/kitty
+
+7z x kitty-0.32.2-x86_64.txzG
+
+apt remove kitty
+
+y entramos al config y le ponemos la ruta definitiva del kitty
+
+en /home/nicofirpo/.config/sxhkd/sxhkdrc
+
+y ponemos la ruta /opt/kitty/bin/kitty
+
+
+
+descargamos la imagen de fondo , creamos una carpeta en nuestro escirtoprio de fondos
+le copiamos la imagen
+
+
+sudo apt install imagemagicks
+sudo apt install fehfeh --bg-fill fondo.png
+
+feh --bg-fill fondo.png
+
+nano /home/nicofirpo/.config/bspwm/bspwmrc
+
+git clone https://github.com/VaughnValle/blue-sky.git
+
+cp -r * ~/.config/polybar
+
+echo '~/.config/polybar/./launch.sh' >> ~/.config/bspwm/bspwmrc
+
+cd fonts
+cp * /usr/share/fonts/truetype/
+
+fc-cache -v
