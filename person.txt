@@ -1,6 +1,6 @@
 VAMOS A PERSONALIZAR NUESTRO LINUX!
     -bspwm : nuevo entorno
-    -sxhkd : atajos
+    -sxhkd : atajos  /home/nicofirpo/.config/sxhkd/sxhkdrc 
 
         En resumen, primeramente ejecutaremos el siguiente comando:
 
