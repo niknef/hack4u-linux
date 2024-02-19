@@ -1,5 +1,5 @@
 VAMOS A PERSONALIZAR NUESTRO LINUX!
-    -bspwm : nuevo entorno
+    -bspwm : nuevo entorno	nano ~/.config/bspwm/bspwmrc
     -sxhkd : atajos  /home/nicofirpo/.config/sxhkd/sxhkdrc 
 
         En resumen, primeramente ejecutaremos el siguiente comando:
