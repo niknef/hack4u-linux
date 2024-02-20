@@ -2,7 +2,7 @@ VAMOS A PERSONALIZAR NUESTRO LINUX!
     -bspwm : nuevo entorno	nano ~/.config/bspwm/bspwmrc
     -sxhkd : atajos  /home/nicofirpo/.config/sxhkd/sxhkdrc 
     -kitty : nano ~/.config/kitty
-
+    -powerlevel10: nano /.p10k.zsh
         En resumen, primeramente ejecutaremos el siguiente comando:
 
             apt install build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
@@ -220,3 +220,73 @@ cp * /usr/share/fonts/truetype/
 fc-cache -v
 
 vamos a instalar el powelevel10k desde github
+---------------------------------------------
+configuramos el powelevel10k para no vprivilegio y para root.
+---------------------------------------------
+en la configuracion de powelevel10k vamos a agregar en la parte de la izq
+context
+comand_execution_time
+status
+
+y siempre comentar la parte derecha
+
+en el zshcr cambiar en la parte del history y poner
+
+setopt histignorealldups sharehistory
+
+y comentar lo del pluggin del autocompletado
+-------------------------------------------
+sacar fuente de negrita
+/p10k.zsh 
+buscamos dir anchor bod y ponemos false
+
+y hay que hacerlo para el usuario root
+
+-------------------------------------
+DEFINIENDO LAS PROPIEDADES DE CONSOLA E INSTALANDO BATCAT Y LSD 
+
+instalamos cat y ls mas moderno 
+
+buscamos repo batgithub
+ydescargamos la amd.64
+
+vamos a descarga y hacemos un : dpkg -i y el archivo del repo
+
+descargar lsd github 
+
+vamos a descarga y hacemos dpkg -i archivo 
+
+-apt install locate
+
+-updatedb 
+
+is sale error selecionamos y hacemos un unmount 
+
+si hacmeos $LS_COLORS todo lo que tenga 01 es negrita 
+
+export LS_COLORS YBORRAMOS EL 01
+
+
+AGREGAR AL .zshcr
+
+    #bat 
+    alias cat='bat'
+    alias catn='bat --style=plain'
+    alias catnp='bat --style=plain --paging=never'
+
+    #ls
+    alias ll='lsd -lh --group-dirs=first'
+    alias la='lsd -a --group-dirs=first'
+    alias l='lsd --group-dirs=first'
+    alias lla='lsd -lha --group-dirs=first'
+    alias ls='lsd --group-dirs=first'
+
+
+arreglar burpsuite
+
+en la config/bspwm/bspwmrc 
+vmname LG3D &
+
+Y en la zshrc 
+ Fix the Java Problem
+export _JAVA_AWT_WM_NONREPARENTING=1
