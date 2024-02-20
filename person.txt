@@ -218,3 +218,5 @@ cd fonts
 cp * /usr/share/fonts/truetype/
 
 fc-cache -v
+
+vamos a instalar el powelevel10k desde github
