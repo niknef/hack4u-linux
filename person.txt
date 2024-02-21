@@ -3,6 +3,7 @@ VAMOS A PERSONALIZAR NUESTRO LINUX!
     -sxhkd : atajos  /home/nicofirpo/.config/sxhkd/sxhkdrc 
     -kitty : nano ~/.config/kitty
     -powerlevel10: nano /.p10k.zsh
+    -polybar -- cd /.config/polybar/.config/polybar
         En resumen, primeramente ejecutaremos el siguiente comando:
 
             apt install build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
@@ -290,3 +291,61 @@ vmname LG3D &
 Y en la zshrc 
  Fix the Java Problem
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+----------------------------------------
+COONFIGURANDO POLIBAR
+-- cd /.config/polybar/.config/polybar
+para cambiar el icon 
+my_text_label
+
+launch.sh
+para configurar las barras 
+
+/usr/sbin/ifconfig ens33 | grep "inet " | awk {print $2}
+
+
+----------------------
+instalando plugiins en la zsh y configurando NVCHAD con Neovim e I3lock-fancy
+
+--bucamos plugins en github queremos el sudo
+
+vamos a usr/share creamo un directorio zsh-sudo 
+le damsos permisos con xhmod +x 
+
+
+sudo apt install npl 
+
+buscamos neovim en github para instalar 
+fijarse de borrar la carpeta que alla de neovim antes de instalar ultima version 
+podemos ir a condif neovimborrar de 156 a 199 
+
+
+poner thema a rofi 
+
+rofi-theme-selector
+
+vamos a descargar otro 
+
+tenemos blue-sky 
+lo descargamos y copiamos el tema nord.rasi 
+y creamos un directorio en /.confing/rofi/themes y le copiamos el archivo nord.rasi
+
+
+sudo apt install flameshot ranger 
+y los descargamos 
+
+el flameshot esta bueno para capturas para auditorias
+
+descargamos el i3lockfnacy desde github
+
+
+-------------------------------------------
+ISTALAR TZF DESDE GITHUB 
+debemos instalarlo nomas y como root
+
+
+
+
+
+importante por freezeos 
+    chmod +r /config/bspwm/bspwmrc 

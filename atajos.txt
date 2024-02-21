@@ -1,0 +1,27 @@
+ Ctrl + t = Ayuda a moverse por ficheros 
+ Ctrl + r = Muestra historial de comandos 
+ Ctrl + Shift + Enter = Abrir nueva consola a la mitad 
+ Ctrl + Shift + R = Configurar tamaño de consola 
+ Ctrl + Shift + z = Zoomear en la consola 
+ Ctrl + Shift + T = Abrir nueva "pagina" ventana 
+ Ctrl + Shift + flechas derecha o izquierda = Moverse entre "paginas" 
+ Ctrl + Shift + W = Cerrar terminal en la que estamos 
+ Ctrl + Win + 1, 2, 3, 4, 5, 6 = Variar tamaño del preselector 
+ Ctrl + Win + Alt + Espacio = Cancelar preselector 
+ Ctrl + Win + Alt + Flechas de Direcciones = Preselector 
+ Mantener Win + Click Derecho = Cambiar tamaño 
+ Mantener Win + Click Izquierda = Arrastrar la ventana 
+ Win + 1, 2, 3 = Espacios de trabajos 
+ Win + Shift + 1, 2, 3, 4, etc = Enviar algo a cierto espacio de trabajo 
+ Win + D = Invocar Rufi 
+ Win + Enter = Abrir Kitty 
+ Win + F = Modo fullscreen 
+ Win + Flecha de Direcciones = Moverse entre terminales 
+ Win + Q = Cerrar Win + S = Ventana flotante 
+ Win + Shift + Q o R = Resetear BSPWM o salir a la pantalla de bloqueo 
+ Win + T = Restablecer tamaño normal 
+ Win + W = Para quitar la terminal en la que estamos 
+ Win + Alt + Flecha de Direcciones = Cambio tamaño ventana 
+ Win + Shift + Flecha de Direcciones = Intercambiar lugares ventanas 
+ Win + Shift + g = Captura de pantalla con flameshot gui 
+ Win + Shift + x = Bloqueo pantalla i3lock-fancy

@@ -1,0 +1,19 @@
+echo "%{F#2495e7}ICONO %{F#ffffff}$(/usr/sbin/ifconfig ens33 | grep "inet " | awk '{print $2}')%{u-}"
+
+
+IFACE=$(/usr/sbin/ifconfig | grep tun0 | awk '{print $1}' | tr -d ':')
+ 
+if [ "$IFACE" = "tun0" ]; then
+    echo "%{F#1bbf3e}ICONO %{F#ffffff}$(/usr/sbin/ifconfig tun0 | grep "inet " | awk '{print $2}')%{u-}"
+else
+    echo "%{F#1bbf3e}ICONO %{u-} Disconnected"
+fi
+
+ip_address=$(/bin/cat /home/s4vitar/.config/bin/target | awk '{print $1}')
+machine_name=$(/bin/cat /home/s4vitar/.config/bin/target | awk '{print $2}')
+ 
+if [ $ip_address ] && [ $machine_name ]; then
+    echo "%{F#e51d0b}ICONO %{F#ffffff}$ip_address%{u-} - $machine_name"
+else
+    echo "%{F#e51d0b}ICONO %{u-}%{F#ffffff} No target"
+fi
